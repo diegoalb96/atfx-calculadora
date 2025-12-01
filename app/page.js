@@ -25,30 +25,31 @@ export default function Home() {
 
   // CARGAR TICKER TAPE
   useEffect(() => {
-    const script = document.createElement("script");
-    script.src = "https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js";
-    script.async = true;
+  const script = document.createElement("script");
+  script.src = "https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js";
+  script.async = true;
 
-    script.innerHTML = JSON.stringify({
-      symbols: [
-        { proName: "FOREXCOM:EURUSD", title: "EUR/USD" },
-        { proName: "FOREXCOM:GBPUSD", title: "GBP/USD" },
-        { proName: "FOREXCOM:USDJPY", title: "USD/JPY" },
-        { proName: "OANDA:XAUUSD", title: "XAU/USD" },
-        { proName: "FOREXCOM:NAS100", title: "NASDAQ 100" },
-        { proName: "FOREXCOM:SPXUSD", title: "S&P 500" },
-        { proName: "FOREXCOM:NSXUSD", title: "US 30" },
-        { proName: "BITSTAMP:BTCUSD", title: "Bitcoin" }
-      ],
-      showSymbolLogo: true,
-      colorTheme: "dark",
-      isTransparent: true,
-      displayMode: "adaptive",
-      locale: "es"
-    });
+  script.innerHTML = JSON.stringify({
+    symbols: [
+      { proName: "FOREXCOM:EURUSD", title: "EUR/USD" },
+      { proName: "FOREXCOM:GBPUSD", title: "GBP/USD" },
+      { proName: "FOREXCOM:USDJPY", title: "USD/JPY" },
+      { proName: "OANDA:XAUUSD", title: "XAU/USD" },
+      { proName: "FOREXCOM:NAS100", title: "NASDAQ 100" },
+      { proName: "FOREXCOM:SPXUSD", title: "S&P 500" },
+      { proName: "FOREXCOM:NSXUSD", title: "US 30" },
+      { proName: "BITSTAMP:BTCUSD", title: "Bitcoin" }
+    ],
+    showSymbolLogo: true,
+    colorTheme: "dark",
+    isTransparent: false,   // 👈 ESTA ES LA CLAVE
+    displayMode: "regular",
+    locale: "es"
+  });
 
-    document.getElementById("ticker-tape").appendChild(script);
-  }, []);
+  document.getElementById("ticker-tape").appendChild(script);
+}, []);
+
 
   // CALCULAR
   const calculate = () => {
@@ -68,7 +69,7 @@ export default function Home() {
   return (
     <>
       {/* TICKER TAPE EN LA PARTE SUPERIOR */}
-      <div id="ticker-tape" className="w-full"></div>
+      <div id="ticker-tape" className="w-full bg-[#000000]"></div>
 
       {/* FONDO + CALCULADORA */}
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#061322] to-[#0A1A2F] px-4 py-10">
