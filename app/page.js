@@ -30,13 +30,13 @@ export default function Home() {
   };
 
   return (
-  <div className="min-h-screen flex items-center justify-center bg-[#0A1A2F] px-4 py-10">
+  <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#061322] to-[#0A1A2F] px-4 py-10">
     
-    <div className="bg-white/10 backdrop-blur-xl shadow-2xl rounded-2xl p-8 w-full max-w-lg border border-white/20">
+    <div className="bg-white/5 backdrop-blur-2xl shadow-2xl rounded-3xl p-10 w-full max-w-lg border border-white/10">
 
       {/* LOGO ATFX */}
       <div className="w-full flex justify-center mb-6">
-        <img src="/atfx-logo.png" alt="ATFX" className="h-12" />
+        <img src="/atfx-logo.png" alt="ATFX" className="h-20 drop-shadow-lg" />
       </div>
 
       {/* TÍTULO */}
