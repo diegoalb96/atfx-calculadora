@@ -8,11 +8,25 @@ export default function Home() {
   const [stopPips, setStopPips] = useState("");
   const [results, setResults] = useState(null);
 
-  const pipValuePerLot = {
+    const pipValuePerLot = {
+    // FOREX
     "EURUSD": 10,
     "GBPUSD": 10,
     "USDJPY": 9,
-    "XAUUSD": 1,
+    "EURJPY": 9,
+    "GBPJPY": 9,
+
+    // ORO / PLATA
+    "XAUUSD": 1,     // $1 por 0.01
+    "XAGUSD": 0.5,   // $0.50 por 0.01
+
+    // ÍNDICES
+    "NAS100": 1,     // $1 por punto
+    "SP500": 1,      // $1 por punto
+    "US30": 1,       // $1 por punto
+
+    // CRIPTO
+    "BTCUSD": 1,     // $1 por punto
   };
 
   const calculate = () => {
@@ -51,15 +65,37 @@ export default function Home() {
           <div>
             <label className="text-white">Par de Divisas</label>
             <select
-              value={pair}
-              onChange={e => setPair(e.target.value)}
-              className="w-full p-3 sm:p-4 rounded-lg bg-white/20 text-white border border-white/30 focus:ring-2 focus:ring-[#FF6A00]/30 outline-none mt-1"
-            >
-              <option className="text-black">EURUSD</option>
-              <option className="text-black">GBPUSD</option>
-              <option className="text-black">USDJPY</option>
-              <option className="text-black">XAUUSD</option>
-            </select>
+  value={pair}
+  onChange={e => setPair(e.target.value)}
+  className="w-full p-3 sm:p-4 rounded-lg bg-white/20 text-white border border-white/30 focus:ring-2 focus:ring-[#FF6A00]/30 outline-none mt-1"
+>
+  {/* FOREX */}
+  <optgroup label="Forex" className="text-black">
+    <option className="text-black">EURUSD</option>
+    <option className="text-black">GBPUSD</option>
+    <option className="text-black">USDJPY</option>
+    <option className="text-black">EURJPY</option>
+    <option className="text-black">GBPJPY</option>
+  </optgroup>
+
+  {/* METALES */}
+  <optgroup label="Metales" className="text-black">
+    <option className="text-black">XAUUSD</option>
+    <option className="text-black">XAGUSD</option>
+  </optgroup>
+
+  {/* ÍNDICES */}
+  <optgroup label="Índices" className="text-black">
+    <option className="text-black">NAS100</option>
+    <option className="text-black">SP500</option>
+    <option className="text-black">US30</option>
+  </optgroup>
+
+  {/* CRIPTO */}
+  <optgroup label="Criptomonedas" className="text-black">
+    <option className="text-black">BTCUSD</option>
+  </optgroup>
+</select>
           </div>
 
           {/* Tamaño de la cuenta */}
