@@ -95,11 +95,20 @@ export default function Home() {
               <select
   value={pair}
   onChange={e => setPair(e.target.value)}
-  className="w-full p-3 sm:p-4 rounded-lg bg-white/20 text-white border border-white/30 focus:ring-2 focus:ring-[#FF6A00]/30 outline-none mt-1"
+  className="
+    w-full p-3 sm:p-4 
+    rounded-lg 
+    bg-white/20 
+    text-white 
+    border border-white/30 
+    shadow-lg 
+    focus:ring-2 focus:ring-[#FF6A00]/40 
+    outline-none mt-1
+  "
 >
 
   {/* FOREX */}
-  <optgroup label="FOREX" className="text-gray-300 font-bold">
+  <optgroup label="FOREX" className="text-black font-bold text-sm">
     <option value="EURUSD" className="text-black">EURUSD</option>
     <option value="GBPUSD" className="text-black">GBPUSD</option>
     <option value="USDJPY" className="text-black">USDJPY</option>
@@ -108,20 +117,20 @@ export default function Home() {
   </optgroup>
 
   {/* METALES */}
-  <optgroup label="METALES" className="text-gray-300 font-bold mt-2">
+  <optgroup label="METALES" className="text-black font-bold text-sm mt-2">
     <option value="XAUUSD" className="text-black">XAUUSD</option>
     <option value="XAGUSD" className="text-black">XAGUSD</option>
   </optgroup>
 
   {/* ÍNDICES */}
-  <optgroup label="ÍNDICES" className="text-gray-300 font-bold mt-2">
+  <optgroup label="ÍNDICES" className="text-black font-bold text-sm mt-2">
     <option value="NAS100" className="text-black">NAS100</option>
     <option value="SP500" className="text-black">SP500</option>
     <option value="US30" className="text-black">US30</option>
   </optgroup>
 
-  {/* CRIPTOMONEDAS */}
-  <optgroup label="CRIPTOS" className="text-gray-300 font-bold mt-2">
+  {/* CRIPTOS */}
+  <optgroup label="CRIPTOS" className="text-black font-bold text-sm mt-2">
     <option value="BTCUSD" className="text-black">BTCUSD</option>
   </optgroup>
 
