@@ -93,22 +93,39 @@ export default function Home() {
             <div>
               <label className="text-white">Par de Divisas</label>
               <select
-                value={pair}
-                onChange={e => setPair(e.target.value)}
-                className="w-full p-3 sm:p-4 rounded-lg bg-white/20 text-white border border-white/30 mt-1"
-              >
-                <option className="text-black">EURUSD</option>
-                <option className="text-black">GBPUSD</option>
-                <option className="text-black">USDJPY</option>
-                <option className="text-black">EURJPY</option>
-                <option className="text-black">GBPJPY</option>
-                <option className="text-black">XAUUSD</option>
-                <option className="text-black">XAGUSD</option>
-                <option className="text-black">NAS100</option>
-                <option className="text-black">SP500</option>
-                <option className="text-black">US30</option>
-                <option className="text-black">BTCUSD</option>
-              </select>
+  value={pair}
+  onChange={e => setPair(e.target.value)}
+  className="w-full p-3 sm:p-4 rounded-lg bg-white/20 text-white border border-white/30 focus:ring-2 focus:ring-[#FF6A00]/30 outline-none mt-1"
+>
+
+  {/* FOREX */}
+  <optgroup label="FOREX" className="text-gray-300 font-bold">
+    <option value="EURUSD" className="text-black">EURUSD</option>
+    <option value="GBPUSD" className="text-black">GBPUSD</option>
+    <option value="USDJPY" className="text-black">USDJPY</option>
+    <option value="EURJPY" className="text-black">EURJPY</option>
+    <option value="GBPJPY" className="text-black">GBPJPY</option>
+  </optgroup>
+
+  {/* METALES */}
+  <optgroup label="METALES" className="text-gray-300 font-bold mt-2">
+    <option value="XAUUSD" className="text-black">XAUUSD</option>
+    <option value="XAGUSD" className="text-black">XAGUSD</option>
+  </optgroup>
+
+  {/* ÍNDICES */}
+  <optgroup label="ÍNDICES" className="text-gray-300 font-bold mt-2">
+    <option value="NAS100" className="text-black">NAS100</option>
+    <option value="SP500" className="text-black">SP500</option>
+    <option value="US30" className="text-black">US30</option>
+  </optgroup>
+
+  {/* CRIPTOMONEDAS */}
+  <optgroup label="CRIPTOS" className="text-gray-300 font-bold mt-2">
+    <option value="BTCUSD" className="text-black">BTCUSD</option>
+  </optgroup>
+
+</select>
             </div>
 
             {/* ACCOUNT SIZE */}
