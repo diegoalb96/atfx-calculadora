@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { useEffect } from "react";
 
 export default function Home() {
   const [pair, setPair] = useState("EURUSD");
@@ -43,10 +44,39 @@ export default function Home() {
     });
   };
 
+  useEffect(() => {
+  const script = document.createElement("script");
+  script.src = "https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js";
+  script.async = true;
+
+  script.innerHTML = JSON.stringify({
+    symbols: [
+      { proName: "FOREXCOM:EURUSD", title: "EUR/USD" },
+      { proName: "FOREXCOM:GBPUSD", title: "GBP/USD" },
+      { proName: "FOREXCOM:USDJPY", title: "USD/JPY" },
+      { proName: "OANDA:XAUUSD", title: "XAU/USD" },
+      { proName: "FOREXCOM:NAS100", title: "NASDAQ 100" },
+      { proName: "FOREXCOM:SPXUSD", title: "S&P 500" },
+      { proName: "FOREXCOM:NSXUSD", title: "US 30" },
+      { proName: "BITSTAMP:BTCUSD", title: "Bitcoin" }
+    ],
+    showSymbolLogo: true,
+    colorTheme: "dark",
+    isTransparent: true,
+    displayMode: "adaptive",
+    locale: "es"
+  });
+
+  document.getElementById("ticker-tape").appendChild(script);
+}, []);
+  
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#061322] to-[#0A1A2F] px-4 py-8 sm:py-12">
 
-      <div className="bg-white/5 backdrop-blur-2xl shadow-2xl rounded-3xl p-6 sm:p-10 w-full max-w-lg border border-white/10">
+    {/* TICKER TAPE TRADINGVIEW */}
+<div id="ticker-tape" className="w-full mb-6"></div>
+  
+    <div className="bg-white/5 backdrop-blur-2xl shadow-2xl rounded-3xl p-6 sm:p-10 w-full max-w-lg border border-white/10">
 
         {/* LOGO ATFX */}
         <div className="w-full flex justify-center mb-6">
