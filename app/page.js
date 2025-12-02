@@ -8,7 +8,7 @@ export default function Home() {
   const [stopPips, setStopPips] = useState("");
   const [results, setResults] = useState(null);
 
-  // VALOR DEL PIP POR LOTE
+  // PIP VALUE PER LOT
   const pipValuePerLot = {
     "EURUSD": 10,
     "GBPUSD": 10,
@@ -23,35 +23,34 @@ export default function Home() {
     "BTCUSD": 1,
   };
 
-  // CARGAR TICKER TAPE
+  // LOAD TRADINGVIEW TICKER TAPE
   useEffect(() => {
-  const script = document.createElement("script");
-  script.src = "https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js";
-  script.async = true;
+    const script = document.createElement("script");
+    script.src = "https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js";
+    script.async = true;
 
-  script.innerHTML = JSON.stringify({
-    symbols: [
-      { proName: "FOREXCOM:EURUSD", title: "EUR/USD" },
-      { proName: "FOREXCOM:GBPUSD", title: "GBP/USD" },
-      { proName: "FOREXCOM:USDJPY", title: "USD/JPY" },
-      { proName: "OANDA:XAUUSD", title: "XAU/USD" },
-      { proName: "FOREXCOM:NAS100", title: "NASDAQ 100" },
-      { proName: "FOREXCOM:SPXUSD", title: "S&P 500" },
-      { proName: "FOREXCOM:NSXUSD", title: "US 30" },
-      { proName: "BITSTAMP:BTCUSD", title: "Bitcoin" }
-    ],
-    showSymbolLogo: true,
-    colorTheme: "dark",
-    isTransparent: false,   // 👈 ESTA ES LA CLAVE
-    displayMode: "regular",
-    locale: "es"
-  });
+    script.innerHTML = JSON.stringify({
+      symbols: [
+        { proName: "FOREXCOM:EURUSD", title: "EUR/USD" },
+        { proName: "FOREXCOM:GBPUSD", title: "GBP/USD" },
+        { proName: "FOREXCOM:USDJPY", title: "USD/JPY" },
+        { proName: "OANDA:XAUUSD", title: "XAU/USD" },
+        { proName: "FOREXCOM:NAS100", title: "NASDAQ 100" },
+        { proName: "FOREXCOM:SPXUSD", title: "S&P 500" },
+        { proName: "FOREXCOM:NSXUSD", title: "US 30" },
+        { proName: "BITSTAMP:BTCUSD", title: "Bitcoin" }
+      ],
+      showSymbolLogo: true,
+      colorTheme: "dark",
+      isTransparent: false,
+      displayMode: "adaptive",
+      locale: "en"
+    });
 
-  document.getElementById("ticker-tape").appendChild(script);
-}, []);
+    document.getElementById("ticker-tape").appendChild(script);
+  }, []);
 
-
-  // CALCULAR
+  // CALCULATE RESULTS
   const calculate = () => {
     if (!accountSize || !riskPercent || !stopPips) return;
 
@@ -68,96 +67,94 @@ export default function Home() {
 
   return (
     <>
-      {/* TICKER TAPE EN LA PARTE SUPERIOR */}
-      <div id="ticker-tape" className="w-full bg-[#000000]"></div>
+      {/* TICKER TAPE */}
+      <div id="ticker-tape" className="w-full bg-[#0a0a0a] py-1"></div>
 
-      {/* FONDO + CALCULADORA */}
+      {/* PAGE BACKGROUND */}
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#061322] to-[#0A1A2F] px-4 py-10">
 
         <div className="bg-white/5 backdrop-blur-2xl shadow-2xl rounded-3xl p-6 sm:p-10 w-full max-w-lg border border-white/10">
 
-          {/* LOGO ATFX */}
+          {/* LOGO */}
           <div className="w-full flex justify-center mb-6">
             <img src="/atfx-logo.png" alt="ATFX" className="h-20 drop-shadow-lg" />
           </div>
 
-          {/* TÍTULO */}
+          {/* TITLE */}
           <h1 className="text-2xl font-extrabold text-center text-white tracking-wide mb-6">
-            Calculadora de Tamaño de Posición
+            Position Size Calculator
           </h1>
 
-          {/* CAMPOS */}
+          {/* FORM */}
           <div className="space-y-5">
 
-            {/* PAR */}
+            {/* PAIR SELECTOR */}
             <div>
-              <label className="text-white">Par de Divisas</label>
+              <label className="text-white">Trading Instrument</label>
+
               <select
-  value={pair}
-  onChange={e => setPair(e.target.value)}
-  className="
-    w-full p-3 sm:p-4 
-    rounded-lg 
-    bg-white/20 
-    text-white 
-    border border-white/30 
-    shadow-lg 
-    focus:ring-2 focus:ring-[#FF6A00]/40 
-    outline-none mt-1
-  "
->
+                value={pair}
+                onChange={e => setPair(e.target.value)}
+                className="
+                  w-full p-3 sm:p-4 
+                  rounded-lg bg-white/20 text-white 
+                  border border-white/30 shadow-lg 
+                  focus:ring-2 focus:ring-[#FF6A00]/40 
+                  outline-none mt-1
+                "
+              >
 
-  {/* FOREX */}
-  <optgroup label="FOREX" className="text-black font-bold text-sm">
-    <option value="EURUSD" className="text-black">EURUSD</option>
-    <option value="GBPUSD" className="text-black">GBPUSD</option>
-    <option value="USDJPY" className="text-black">USDJPY</option>
-    <option value="EURJPY" className="text-black">EURJPY</option>
-    <option value="GBPJPY" className="text-black">GBPJPY</option>
-  </optgroup>
+                {/* FOREX */}
+                <optgroup label="FOREX" className="text-black font-bold text-sm">
+                  <option value="EURUSD" className="text-black">EURUSD</option>
+                  <option value="GBPUSD" className="text-black">GBPUSD</option>
+                  <option value="USDJPY" className="text-black">USDJPY</option>
+                  <option value="EURJPY" className="text-black">EURJPY</option>
+                  <option value="GBPJPY" className="text-black">GBPJPY</option>
+                </optgroup>
 
-  {/* METALES */}
-  <optgroup label="METALES" className="text-black font-bold text-sm mt-2">
-    <option value="XAUUSD" className="text-black">XAUUSD</option>
-    <option value="XAGUSD" className="text-black">XAGUSD</option>
-  </optgroup>
+                {/* METALS */}
+                <optgroup label="METALS" className="text-black font-bold text-sm mt-2">
+                  <option value="XAUUSD" className="text-black">XAUUSD</option>
+                  <option value="XAGUSD" className="text-black">XAGUSD</option>
+                </optgroup>
 
-  {/* ÍNDICES */}
-  <optgroup label="ÍNDICES" className="text-black font-bold text-sm mt-2">
-    <option value="NAS100" className="text-black">NAS100</option>
-    <option value="SP500" className="text-black">SP500</option>
-    <option value="US30" className="text-black">US30</option>
-  </optgroup>
+                {/* INDICES */}
+                <optgroup label="INDICES" className="text-black font-bold text-sm mt-2">
+                  <option value="NAS100" className="text-black">NAS100</option>
+                  <option value="SP500" className="text-black">SP500</option>
+                  <option value="US30" className="text-black">US30</option>
+                </optgroup>
 
-  {/* CRIPTOS */}
-  <optgroup label="CRIPTOS" className="text-black font-bold text-sm mt-2">
-    <option value="BTCUSD" className="text-black">BTCUSD</option>
-  </optgroup>
+                {/* CRYPTO */}
+                <optgroup label="CRYPTO" className="text-black font-bold text-sm mt-2">
+                  <option value="BTCUSD" className="text-black">BTCUSD</option>
+                </optgroup>
 
-</select>
+              </select>
             </div>
 
             {/* ACCOUNT SIZE */}
             <div>
-              <label className="text-white">Tamaño de la Cuenta</label>
+              <label className="text-white">Account Balance</label>
               <input
                 type="number"
                 value={accountSize}
                 onChange={e => setAccountSize(e.target.value)}
                 className="w-full p-3 sm:p-4 rounded-lg bg-white/20 text-white border border-white/30 mt-1"
-                placeholder="Ej: 1000"
+                placeholder="Ex: 1000"
               />
             </div>
 
-            {/* RIESGO */}
+            {/* RISK */}
             <div>
-              <label className="text-white">Riesgo (%)</label>
+              <label className="text-white">Risk (%)</label>
               <input
                 type="number"
                 value={riskPercent}
                 onChange={e => setRiskPercent(e.target.value)}
                 className="w-full p-3 sm:p-4 rounded-lg bg-white/20 text-white border border-white/30 mt-1"
-                placeholder="Ej: 1"
+                placeholder="Ex: 1"
               />
             </div>
 
@@ -169,26 +166,26 @@ export default function Home() {
                 value={stopPips}
                 onChange={e => setStopPips(e.target.value)}
                 className="w-full p-3 sm:p-4 rounded-lg bg-white/20 text-white border border-white/30 mt-1"
-                placeholder="Ej: 30"
+                placeholder="Ex: 30"
               />
             </div>
 
-            {/* BOTÓN */}
+            {/* BUTTON */}
             <button
               onClick={calculate}
               className="w-full bg-[#FF6A00] text-white font-bold py-3 sm:py-4 rounded-xl shadow-lg hover:bg-[#e85f00] transition text-lg"
             >
-              Calcular
+              Calculate
             </button>
           </div>
 
-          {/* RESULTADOS */}
+          {/* RESULTS */}
           {results && (
             <div className="mt-8 p-5 sm:p-6 bg-white/10 rounded-xl border border-white/20 text-white shadow-inner">
-              <h2 className="text-xl font-bold mb-3">Resultados</h2>
-              <p><b>Dinero en riesgo:</b> ${results.riskMoney}</p>
-              <p><b>Tamaño recomendado:</b> {results.lotSize} lotes</p>
-              <p><b>Unidades:</b> {results.units}</p>
+              <h2 className="text-xl font-bold mb-3">Results</h2>
+              <p><b>Risk Amount:</b> ${results.riskMoney}</p>
+              <p><b>Recommended Lot Size:</b> {results.lotSize} lots</p>
+              <p><b>Units:</b> {results.units}</p>
             </div>
           )}
 
